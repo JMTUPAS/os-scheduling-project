@@ -26,7 +26,8 @@ public class CpuPanel extends JPanel implements ActionListener, ChangeListener {
     private int sampleQuantum;
 
     // inputs
-    private JSpinner countSpinner = new JSpinner(new SpinnerNumberModel(5, 1, 20, 1));
+    // the box allows 1 to 50 on purpose, so Compute can show a clear message when it is not 10 to 20
+    private JSpinner countSpinner = new JSpinner(new SpinnerNumberModel(10, 1, 50, 1));
     private JTextField quantumField = new JTextField(4);
     private JButton backButton = new JButton("Back");
     private JButton computeButton = new JButton("Compute");
@@ -118,7 +119,7 @@ public class CpuPanel extends JPanel implements ActionListener, ChangeListener {
         clearButton.addActionListener(this);
         countSpinner.addChangeListener(this);
 
-        setRows(5);
+        setRows(10);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -157,6 +158,12 @@ public class CpuPanel extends JPanel implements ActionListener, ChangeListener {
 
         // read and check every input, stop at the first wrong one
         int n = inputModel.getRowCount();
+
+        // the professor's rule: only 10 to 20 processes
+        if (InputCheck.readNumber(this, n, "Number of processes", 10, 20) == -1) {
+            return;
+        }
+
         int[] arrival = new int[n];
         int[] burst = new int[n];
         for (int i = 0; i < n; i++) {

@@ -33,6 +33,8 @@ THE 4 WAYS (ALGORITHMS)
                  back to the other side and goes the same way again.
 
 OUR RULES
+  - SJF and Round Robin need 10 to 20 processes.
+    Any other number shows an error message.
   - Time starts at 0.
   - If two jobs are tied, the one that came first goes first.
     If still tied, the smaller number (P1 before P2) goes first.
@@ -46,4 +48,5 @@ HOW DO I REBUILD IT? (only if you change the code)
   It makes a new OSProject.jar for you.
 
 WHERE ARE THE SAMPLE PROBLEMS FROM?
-  The book "Operating System Concepts" by Silberschatz.
+  SJF and Round Robin: our own 10-process problems, solved by hand.
+  Disk: the book "Operating System Concepts" by Silberschatz.
