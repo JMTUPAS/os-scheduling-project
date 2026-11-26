@@ -28,7 +28,7 @@ public class Main extends JFrame implements ActionListener {
     private JButton aboutBackButton = new JButton("Back");
 
     public Main() {
-        setTitle("OS Scheduling Project - Group 6");
+        setTitle("OS Scheduling Project - GILAS PILIPINAS");
         setSize(1150, 720);
         setLocationRelativeTo(null); // center on the screen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,7 +86,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private JPanel makeAbout() {
-        JLabel title = new JLabel("About - Group 6", SwingConstants.CENTER);
+        JLabel title = new JLabel("About - GILAS PILIPINAS", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 24));
 
         // member list as a read-only table

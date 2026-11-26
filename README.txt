@@ -1,5 +1,5 @@
-OS SCHEDULING PROJECT - GROUP 6
-===============================
+OS SCHEDULING PROJECT - GILAS PILIPINAS
+=======================================
 
 WHAT IS THIS?
 This is a program that shows how a computer decides
