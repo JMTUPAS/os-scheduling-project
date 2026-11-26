@@ -1,7 +1,7 @@
 // SampleData.java
 // Sample problems used by the "Load Sample Data" buttons and by TestRunner.
 // CPU samples: our own 10-process problems, solved by hand (the professor wants 10 to 20 processes).
-// Disk sample: the classic example from Silberschatz, Galvin, Gagne - Operating System Concepts.
+// Disk sample: our own 10-request problem, solved by hand (SCAN and C-LOOK both go right).
 // Written by: John Michael Tupas (Testing Lead)
 
 public class SampleData {
@@ -15,8 +15,8 @@ public class SampleData {
     public static int[] RR_BURST = {5, 3, 8, 2, 6, 4, 3, 1, 5, 2};
     public static int RR_QUANTUM = 3;
 
-    // disk example: head at 53, disk has cylinders 0 to 199
-    public static int[] DISK_REQUESTS = {98, 183, 37, 122, 14, 124, 65, 67};
-    public static int DISK_HEAD = 53;
+    // disk example: 10 requests, head at 50, disk has cylinders 0 to 199
+    public static int[] DISK_REQUESTS = {90, 25, 150, 60, 10, 190, 35, 120, 75, 170};
+    public static int DISK_HEAD = 50;
     public static int DISK_SIZE = 200;
 }

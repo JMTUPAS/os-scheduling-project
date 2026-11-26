@@ -39,7 +39,7 @@ public class Main extends JFrame implements ActionListener {
                 SampleData.SJF_ARRIVAL, SampleData.SJF_BURST, 0), "sjf");
         screens.add(new CpuPanel("Round Robin (RR) - Preemptive", new RR(), true,
                 SampleData.RR_ARRIVAL, SampleData.RR_BURST, SampleData.RR_QUANTUM), "rr");
-        screens.add(new DiskPanel("SCAN Disk Scheduling", new SCAN(), false), "scan");
+        screens.add(new DiskPanel("SCAN Disk Scheduling", new SCAN(), true), "scan");
         screens.add(new DiskPanel("C-LOOK Disk Scheduling", new CLOOK(), true), "clook");
         screens.add(makeAbout(), "about");
         add(screens);

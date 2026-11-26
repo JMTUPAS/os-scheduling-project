@@ -65,22 +65,22 @@ public class TestRunner {
         check("RR new arrival first, P2 completion", rr2.completion[1], 4);
         check("RR new arrival first, P1 completion", rr2.completion[0], 6);
 
-        // SCAN toward 0: 53 37 14 0 65 67 98 122 124 183
-        DiskResult scanLeft = new SCAN().schedule(SampleData.DISK_REQUESTS, 53, 200, false);
-        check("SCAN left total movement", scanLeft.totalMovement(), 236);
+        // SCAN toward 0: 50 35 25 10 0 60 75 90 120 150 170 190
+        DiskResult scanLeft = new SCAN().schedule(SampleData.DISK_REQUESTS, 50, 200, false);
+        check("SCAN left total movement", scanLeft.totalMovement(), 240);
 
-        // SCAN toward 199: 53 65 67 98 122 124 183 199 37 14
-        DiskResult scanRight = new SCAN().schedule(SampleData.DISK_REQUESTS, 53, 200, true);
-        check("SCAN right total movement", scanRight.totalMovement(), 331);
+        // SCAN toward 199: 50 60 75 90 120 150 170 190 199 35 25 10
+        DiskResult scanRight = new SCAN().schedule(SampleData.DISK_REQUESTS, 50, 200, true);
+        check("SCAN right total movement", scanRight.totalMovement(), 338);
 
-        // C-LOOK toward 199: 53 65 67 98 122 124 183 14 37
-        DiskResult clookRight = new CLOOK().schedule(SampleData.DISK_REQUESTS, 53, 200, true);
-        check("C-LOOK right total movement", clookRight.totalMovement(), 322);
-        check("C-LOOK right jump lands on 14", clookRight.path[7], 14);
+        // C-LOOK toward 199: 50 60 75 90 120 150 170 190 10 25 35
+        DiskResult clookRight = new CLOOK().schedule(SampleData.DISK_REQUESTS, 50, 200, true);
+        check("C-LOOK right total movement", clookRight.totalMovement(), 345);
+        check("C-LOOK right jump lands on 10", clookRight.path[8], 10);
 
-        // C-LOOK toward 0: 53 37 14 183 124 122 98 67 65
-        DiskResult clookLeft = new CLOOK().schedule(SampleData.DISK_REQUESTS, 53, 200, false);
-        check("C-LOOK left total movement", clookLeft.totalMovement(), 326);
+        // C-LOOK toward 0: 50 35 25 10 190 170 150 120 90 75 60
+        DiskResult clookLeft = new CLOOK().schedule(SampleData.DISK_REQUESTS, 50, 200, false);
+        check("C-LOOK left total movement", clookLeft.totalMovement(), 350);
 
         // duplicate requests are served one after another (zero movement)
         DiskResult dup = new CLOOK().schedule(new int[] {60, 60}, 50, 200, true);
