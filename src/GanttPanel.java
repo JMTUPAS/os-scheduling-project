@@ -34,7 +34,7 @@ public class GanttPanel extends JPanel {
         }
 
         int left = 20;
-        int top = 40;
+        int top = 50;
         int height = 50;
 
         // how many pixels one time unit takes, so the chart fits the panel width
@@ -42,6 +42,8 @@ public class GanttPanel extends JPanel {
 
         int endX = left + (int) (result.totalTime() * unit); // where the last box ends
         int lastLabelEnd = -100; // where the last time label we wrote ends, so labels do not pile up
+        int aboveEnd1 = -100; // where the last name written above the chart ends, on row 1 and row 2
+        int aboveEnd2 = -100;
 
         for (int i = 0; i < result.ganttCount; i++) {
             int x1 = left + (int) (result.ganttStart[i] * unit);
@@ -60,9 +62,18 @@ public class GanttPanel extends JPanel {
             g.setColor(Color.BLACK);
             g.drawRect(x1, top, x2 - x1, height);
 
-            // write the name only if it fits inside the box
-            if (x2 - x1 > 25) {
-                g.drawString(result.ganttName[i], x1 + 4, top + 30);
+            // write the name inside the box if it fits; if the box is too small, write it above the box
+            // (2 rows above, so names of tiny boxes next to each other do not overlap)
+            String name = result.ganttName[i];
+            int nameWidth = g.getFontMetrics().stringWidth(name);
+            if (x2 - x1 > nameWidth + 6) {
+                g.drawString(name, x1 + 4, top + 30);
+            } else if (x1 > aboveEnd1 + 2) {
+                g.drawString(name, x1, top - 5);
+                aboveEnd1 = x1 + nameWidth;
+            } else if (x1 > aboveEnd2 + 2) {
+                g.drawString(name, x1, top - 18);
+                aboveEnd2 = x1 + nameWidth;
             }
 
             // write the start time only if it does not touch the last label or the end label
