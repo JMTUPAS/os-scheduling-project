@@ -34,6 +34,7 @@ THE 4 WAYS (ALGORITHMS)
 
 OUR RULES
   - SJF and Round Robin need 10 to 20 processes.
+    SCAN and C-LOOK need 10 to 20 requests.
     Any other number shows an error message.
   - Time starts at 0.
   - If two jobs are tied, the one that came first goes first.

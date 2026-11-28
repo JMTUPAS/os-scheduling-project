@@ -23,7 +23,8 @@ public class DiskPanel extends JPanel implements ActionListener, ChangeListener 
     private boolean sampleGoRight;
 
     // inputs
-    private JSpinner countSpinner = new JSpinner(new SpinnerNumberModel(8, 1, 50, 1));
+    // the box allows 1 to 50 on purpose, so Compute can show a clear message when it is not 10 to 20
+    private JSpinner countSpinner = new JSpinner(new SpinnerNumberModel(10, 1, 50, 1));
     private JTextField headField = new JTextField(5);
     private JTextField sizeField = new JTextField("200", 5);
     private JComboBox<String> directionBox = new JComboBox<String>(new String[] {
@@ -116,7 +117,7 @@ public class DiskPanel extends JPanel implements ActionListener, ChangeListener 
         clearButton.addActionListener(this);
         countSpinner.addChangeListener(this);
 
-        setRows(8);
+        setRows(10);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -153,6 +154,12 @@ public class DiskPanel extends JPanel implements ActionListener, ChangeListener 
             requestTable.getCellEditor().stopCellEditing();
         }
 
+        // same rule as the CPU screens: only 10 to 20 requests
+        int n = requestModel.getRowCount();
+        if (InputCheck.readNumber(this, n, "Number of requests", 10, 20) == -1) {
+            return;
+        }
+
         // disk size first, because head and requests must fit inside the disk
         int diskSize = InputCheck.readNumber(this, sizeField.getText(), "Disk size", 2, 10000);
         if (diskSize == -1) {
@@ -163,7 +170,6 @@ public class DiskPanel extends JPanel implements ActionListener, ChangeListener 
             return;
         }
 
-        int n = requestModel.getRowCount();
         int[] requests = new int[n];
         for (int i = 0; i < n; i++) {
             requests[i] = InputCheck.readNumber(this, requestModel.getValueAt(i, 1), "Request #" + (i + 1), 0, diskSize - 1);
